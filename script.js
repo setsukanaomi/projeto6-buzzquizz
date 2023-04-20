@@ -231,8 +231,11 @@ function validaNivel() {
 function criarQuiz() {
   const tela1 = document.querySelector("#tela-1");
   const tela3 = document.querySelector("#tela-3-comece");
+  const tela2 = document.querySelector("#tela-2");
 
   tela1.classList.add("escondido");
   tela3.classList.remove("escondido");
+  tela2.classList.add("escondido");
+
 }
 
