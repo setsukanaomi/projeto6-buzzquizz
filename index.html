@@ -7,8 +7,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <title>Projetão BuzzQuizz</title>
 
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
@@ -16,7 +16,8 @@
       <h1>BuzzQuizz</h1>
     </div>
 
-    <div class="container-tela1">
+    <div id="tela-1" class="containers-telas escondido">
+
       <div class="criarQuizz">
         <p>Você não criou nenhum quizz ainda :(</p>
         <div class="botaoQuiz">Criar Quizz</div>
@@ -29,18 +30,141 @@
       </div>
     </div>
 
-    <div class="container-tela3 escondido">
+    <div id="tela-3-comece" class="containers-telas">
       <span>Comece pelo começo</span>
-      <div class="infoBasicas escondido">
-        <input type="text" placeholder="Título do seu quizz">
-        <input type="text" placeholder="URL da imagem do seu quizz">
-        <input type="text" placeholder="Quantidade de perguntas do seu quizz">
-        <input type="text" placeholder="Quantidade de níveis do quizz">
+      <div class="infoTelas">
+        <input class="titulo" type="text" placeholder="Título do seu quizz" />
+        <input
+          class="url"
+          type="text"
+          placeholder="URL da imagem do seu quizz"
+        />
+        <input
+          class="perguntas"
+          type="text"
+          placeholder="Quantidade de perguntas do seu quizz"
+        />
+        <input
+          class="niveis"
+          type="text"
+          placeholder="Quantidade de níveis do quizz"
+        />
       </div>
-      <div class="prosseguirPerguntas">
+      <div class="prosseguirBotao" onclick="validarEntradas()">
         <p>Prosseguir para criar perguntas</p>
       </div>
     </div>
+
+    <div id="tela-4-perguntas" class="containers-telas escondido">
+      <span>Crie suas perguntas</span>
+      <div class="infoTelas">
+        <h2 class="procedimentos">Pergunta 1</h2>
+        <input
+          class="textoPergunta"
+          type="text"
+          placeholder="Texto da pergunta"
+        />
+        <input class="cor" type="text" placeholder="Cor de fundo da pergunta" />
+        <div class="procedimentos"><h2>Resposta correta</h2></div>
+        <input class="respostas" type="text" placeholder="Resposta correta" />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem"
+        />
+        <div class="procedimentos"><h2>Respostas incorretas</h2></div>
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 1"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 1"
+        />
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 2"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 2"
+        />
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 3"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 3"
+        />
+      </div>
+      <div class="perguntas">
+        <div class="adicionar-perguntas">
+          <h2>Pergunta 2</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+        <div class="adicionar-perguntas">
+          <h2>Pergunta 3</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+      </div>
+      <div class="prosseguirBotao" onclick="validaPerguntas()">
+        <p>Prosseguir para criar níveis</p>
+      </div>
+    </div>
+
+    <div id="tela-5-niveis" class="containers-telas escondido">
+      <span>Agora, decida os níveis</span>
+      <div class="infoTelas">
+        <h2 class="procedimentos">Nível 1</h2>
+        <input class="tituloNivel" type="text" placeholder="Título do nível" />
+        <input
+          class="porcentagemAcerto"
+          type="text"
+          placeholder="% de acerto mínima"
+        />
+        <input
+          class="urlNivel"
+          type="text"
+          placeholder="URL da imagem do nível"
+        />
+        <input
+          class="descricaoNivel"
+          type="text"
+          placeholder="Descrição do nível"
+        />
+      </div>
+      <div class="perguntas">
+        <div class="adicionar-perguntas">
+          <h2>Nível 2</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+        <div class="adicionar-perguntas">
+          <h2>Nível 3</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+      </div>
+      <div class="prosseguirBotao">
+        <p>Finalizar Quizz</p>
+      </div>
+    </div>
+
+    <!-- as telas irão compartilhar o mesmo nome CSS, containers-telas e infoTelas, para facilitar
+    e evitar muitas classes CSS-->
 
     <!-- codigo andre-->
     <div class="container-quizzes escondido">
@@ -49,6 +173,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
-
   </body>
 </html>
