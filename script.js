@@ -145,7 +145,8 @@ function validarEntradas() {
     titulo.length < 20 ||
     titulo.length > 65 ||
     qtdPerguntas < 3 ||
-    qtdNiveis < 2
+    qtdNiveis < 2 ||
+    !validUrl(urlImagem)
   ) {
     alert(`Favor preencher os dados corretamente:
         
@@ -153,7 +154,9 @@ function validarEntradas() {
         URL da imagem deve ter formato de URL,
         Quantidade de perguntas: no mínimo 3 perguntas,
         Quantidade de níveis: no mínimo 2.`);
+    return;
   }
+  paraPerguntas();
 }
 
 //- Código Naomi - Validador de Perguntas (Desktop-9)
@@ -229,9 +232,20 @@ function validaNivel() {
 function criarQuiz() {
   const tela1 = document.querySelector("#tela-1");
   const tela3 = document.querySelector("#tela-3-comece");
+  const tela2 = document.querySelector("#tela-2");
 
   tela1.classList.add("escondido");
   tela3.classList.remove("escondido");
+  tela2.classList.add("escondido");
+}
+
+// - Função quando clica Prosseguir Perguntas vai para Tela-4 Perguntas
+function paraPerguntas() {
+  const tela3 = document.querySelector("#tela-3-comece");
+  const tela4 = document.querySelector("#tela-4-perguntas");
+
+  tela3.classList.add("escondido");
+  tela4.classList.remove("escondido");
 }
 
 // - Função que expande/colapsa pergunta
