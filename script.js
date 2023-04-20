@@ -101,4 +101,42 @@ function validarEntradas() {
   }
 }
 
-//
+//- Código Naomi
+
+function validaPerguntas() {
+  const textoPergunta = document.querySelector(".textoPergunta");
+  const pergunta = textoPergunta.value;
+
+  const corPergunta = document.querySelector(".cor");
+  const cor = corPergunta.value;
+  const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+  const respostasPerguntas = document.querySelectorAll(".respostas");
+  const respostas = [];
+  respostasPerguntas.forEach((resposta) => {
+    respostas.push(resposta.value);
+  });
+
+  const urlsRespostas = document.querySelectorAll(".urlPerguntasImg");
+  const urlImgs = [];
+  urlsRespostas.forEach((url) => {
+    urlImgs.push(url.value);
+  });
+  if (
+    pergunta.length < 20 ||
+    !decimal.test(cor) ||
+    respostas[0] === "" ||
+    respostas.length < 2 ||
+    respostas.includes("") ||
+    urlImgs.some((url) => !validUrl(url))
+  ) {
+    alert("Por favor, preencha os dados corretamente.");
+    return;
+  }
+  alert("Dados preenchidos corretamente!");
+}
+
+function validUrl(url) {
+  const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+  return regex.test(url);
+}

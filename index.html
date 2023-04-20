@@ -105,38 +105,71 @@
       <span>Crie suas perguntas</span>
       <div class="infoTelas">
         <h2 class="procedimentos">Pergunta 1</h2>
-        <input type="text" placeholder="Texto da pergunta" />
-        <input type="text" placeholder="Cor de fundo da pergunta" />
+        <input
+          class="textoPergunta"
+          type="text"
+          placeholder="Texto da pergunta"
+        />
+        <input class="cor" type="text" placeholder="Cor de fundo da pergunta" />
         <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input type="text" placeholder="Resposta correta" />
-        <input type="text" placeholder="URL da imagem" />
+        <input class="respostas" type="text" placeholder="Resposta correta" />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem"
+        />
         <div class="procedimentos"><h2>Respostas incorretas</h2></div>
-        <input type="text" placeholder="Resposta incorreta 1" />
-        <input type="text" placeholder="URL da imagem 1" />
-        <input type="text" placeholder="Resposta incorreta 2" />
-        <input type="text" placeholder="URL da imagem 2" />
-        <input type="text" placeholder="Resposta incorreta 3" />
-        <input type="text" placeholder="URL da imagem 3" />
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 1"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 1"
+        />
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 2"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 2"
+        />
+        <input
+          class="respostas"
+          type="text"
+          placeholder="Resposta incorreta 3"
+        />
+        <input
+          class="urlPerguntasImg"
+          type="text"
+          placeholder="URL da imagem 3"
+        />
       </div>
       <div class="perguntas">
         <div class="adicionar-perguntas">
           <h2>Pergunta 2</h2>
           <div>
-            <button><img src="./imagens/Vector.png" /></button>
+            <button><img src="./imagens/botaopergunta.png" /></button>
           </div>
         </div>
         <div class="adicionar-perguntas">
           <h2>Pergunta 3</h2>
           <div>
-            <button><img src="./imagens/Vector.png" /></button>
+            <button><img src="./imagens/botaopergunta.png" /></button>
           </div>
         </div>
       </div>
-      <div class="prosseguirBotao">
+      <div class="prosseguirBotao" onclick="validaPerguntas()">
         <p>Prosseguir para criar níveis</p>
       </div>
     </div>
-    <!-- as telas irão compartilhar o mesmo nome CSS, infoTelas, para facilitar
+
+    <!-- as telas irão compartilhar o mesmo nome CSS, containers-telas e infoTelas, para facilitar
     e evitar muitas classes CSS-->
 
     <!-- codigo andre-->
