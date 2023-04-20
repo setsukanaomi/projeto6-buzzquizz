@@ -19,20 +19,8 @@
     <div id="tela-1" class="containers-telas">
       <div class="criarQuizz">
         <p>Você não criou nenhum quizz ainda :(</p>
-        <div class="botaoQuiz" onclick="criarQuiz()">Criar Quizz</div>
-      </div>
-      <div class="todosQuizzes">
-        <p>Todos os Quizzes</p>
-
-        <div class="containerQuizzes"></div>
-      </div>
-    </div>
-
-    <div id="tela-2" class="containers-telas escondido">
-      <div class="favoritos">
-        <div class="seusQuizzes">
-          <p>Seus Quizzes</p>
-          <ion-icon name="add-circle" onclick="criarQuiz()"></ion-icon>
+        <div class="botaoQuiz" data-test="create-btn" onclick="criarQuiz()">
+          Criar Quizz
         </div>
       </div>
       <div class="todosQuizzes">
@@ -46,7 +34,11 @@
       <div class="favoritos">
         <div class="seusQuizzes">
           <p>Seus Quizzes</p>
-          <ion-icon name="add-circle" onclick="criarQuiz()"></ion-icon>
+          <ion-icon
+            name="add-circle"
+            data-test="create-btn"
+            onclick="criarQuiz()"
+          ></ion-icon>
         </div>
       </div>
       <div class="todosQuizzes">
@@ -59,43 +51,67 @@
     <div id="tela-3-comece" class="containers-telas escondido">
       <span>Comece pelo começo</span>
       <div class="infoTelas">
-        <input class="titulo" type="text" placeholder="Título do seu quizz" />
+        <input
+          class="titulo"
+          data-test="title-input"
+          type="text"
+          placeholder="Título do seu quizz"
+        />
         <input
           class="url"
+          data-test="img-input"
           type="text"
           placeholder="URL da imagem do seu quizz"
         />
         <input
           class="perguntas"
+          data-test="questions-amount-input"
           type="text"
           placeholder="Quantidade de perguntas do seu quizz"
         />
         <input
           class="niveis"
+          data-test="levels-amount-input"
           type="text"
           placeholder="Quantidade de níveis do quizz"
         />
       </div>
-      <div class="prosseguirBotao" onclick="validarEntradas()">
+      <div
+        class="prosseguirBotao"
+        data-test="go-create-questions"
+        onclick="validarEntradas()"
+      >
         <p>Prosseguir para criar perguntas</p>
       </div>
     </div>
 
-    <div id="tela-4-perguntas" class="containers-telas">
+    <div id="tela-4-perguntas" class="containers-telas escondido">
       <span>Crie suas perguntas</span>
-      <div class="infoTelas">
+      <div id="pergunta-1" data-test="question-ctn" class="infoTelas">
         <h2 class="procedimentos">Pergunta 1</h2>
         <input
           class="textoPergunta"
+          data-test="question-input"
           type="text"
           placeholder="Texto da pergunta"
         />
-        <input class="cor" type="text" placeholder="Cor de fundo da pergunta" />
+        <input
+          class="cor"
+          data-test="question-color-input"
+          type="text"
+          placeholder="Cor de fundo da pergunta"
+        />
 
         <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input class="respostas" type="text" placeholder="Resposta correta" />
+        <input
+          class="respostas"
+          data-test="correct-answer-input"
+          type="text"
+          placeholder="Resposta correta"
+        />
         <input
           class="urlPerguntasImg"
+          data-test="correct-img-input"
           type="text"
           placeholder="URL da imagem"
         />
@@ -103,31 +119,37 @@
         <div class="procedimentos"><h2>Respostas incorretas</h2></div>
         <input
           class="respostas"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 1"
         />
         <input
           class="urlPerguntasImg"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 1"
         />
         <input
           class="respostas"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 2"
         />
         <input
           class="urlPerguntasImg"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 2"
         />
         <input
           class="respostas"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 3"
         />
         <input
           class="urlPerguntasImg"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 3"
         />
@@ -136,28 +158,36 @@
         <div class="add-ou-modifica">
           <h2>Pergunta 2</h2>
           <div>
-            <button onclick="expandePergunta(2)">
+            <button data-test="toggle" onclick="expandePergunta(2)">
               <img src="./imagens/modificar.png" />
             </button>
           </div>
         </div>
       </div>
-      <div id="pergunta-2" class="infoTelas escondido">
+      <div id="pergunta-2" data-test="question-ctn" class="infoTelas escondido">
         <input
           class="textoPergunta2"
+          data-test="question-input"
           type="text"
           placeholder="Texto da pergunta"
         />
         <input
           class="cor2"
+          data-test="question-color-input"
           type="text"
           placeholder="Cor de fundo da pergunta"
         />
 
         <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input class="respostas2" type="text" placeholder="Resposta correta" />
+        <input
+          class="respostas2"
+          data-test="correct-answer-input"
+          type="text"
+          placeholder="Resposta correta"
+        />
         <input
           class="urlPerguntasImg2"
+          data-test="correct-img-input"
           type="text"
           placeholder="URL da imagem"
         />
@@ -198,28 +228,36 @@
         <div class="add-ou-modifica">
           <h2>Pergunta 3</h2>
           <div>
-            <button onclick="expandePergunta(3)">
+            <button data-test="toggle" onclick="expandePergunta(3)">
               <img src="./imagens/modificar.png" />
             </button>
           </div>
         </div>
       </div>
-      <div id="pergunta-3" class="infoTelas escondido">
+      <div id="pergunta-3" data-test="question-ctn" class="infoTelas escondido">
         <input
           class="textoPergunta3"
+          data-test="question-input"
           type="text"
           placeholder="Texto da pergunta"
         />
         <input
           class="cor3"
+          data-test="question-color-input"
           type="text"
           placeholder="Cor de fundo da pergunta"
         />
 
         <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input class="respostas3" type="text" placeholder="Resposta correta" />
+        <input
+          class="respostas3"
+          data-test="correct-answer-input"
+          type="text"
+          placeholder="Resposta correta"
+        />
         <input
           class="urlPerguntasImg3"
+          data-test="correct-img-input"
           type="text"
           placeholder="URL da imagem"
         />
@@ -227,36 +265,46 @@
         <div class="procedimentos"><h2>Respostas incorretas</h2></div>
         <input
           class="respostas3"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 1"
         />
         <input
           class="urlPerguntasImg3"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 1"
         />
         <input
           class="respostas3"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 2"
         />
         <input
           class="urlPerguntasImg3"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 2"
         />
         <input
           class="respostas3"
+          data-test="wrong-answer-input"
           type="text"
           placeholder="Resposta incorreta 3"
         />
         <input
           class="urlPerguntasImg3"
+          data-test="wrong-img-input"
           type="text"
           placeholder="URL da imagem 3"
         />
       </div>
-      <div class="prosseguirBotao" onclick="validaPerguntas()">
+      <div
+        class="prosseguirBotao"
+        data-test="go-create-levels"
+        onclick="validaPerguntas()"
+      >
         <p>Prosseguir para criar níveis</p>
       </div>
     </div>
