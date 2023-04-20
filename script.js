@@ -1,132 +1,130 @@
-axios.defaults.headers.common['Authorization'] = '97eVqU1AsszfPTccPmhDFe5m';
+axios.defaults.headers.common["Authorization"] = "97eVqU1AsszfPTccPmhDFe5m";
 
 let quizzes = [];
-let quizz = '';
+let quizz = "";
 
 obterQuizz();
 
 function obterQuizz() {
-    const requisicao = axios.get('https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes');
-    requisicao.then(processarQuizz);
+  const requisicao = axios.get(
+    "https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes"
+  );
+  requisicao.then(processarQuizz);
 }
 
 function processarQuizz(res) {
-    console.log(res);
+  console.log(res);
 
-    quizzes = res.data;
+  quizzes = res.data;
 
-    renderizarQuizzTela1();
+  renderizarQuizzTela1();
 }
 
 function renderizarQuizzTela1() {
-    const ulQuizz = document.querySelector('.containerQuizzes');
+  const ulQuizz = document.querySelector(".containerQuizzes");
 
-    ulQuizz.innerHTML = '';
+  ulQuizz.innerHTML = "";
 
-    for (let i = 0; i < quizzes.length; i++) {
-        ulQuizz.innerHTML += `
+  for (let i = 0; i < quizzes.length; i++) {
+    ulQuizz.innerHTML += `
             <div class="divQuiz" onclick="selecionarQuizz(this, ${i})">
                 <img src="${quizzes[i].image}">
                 <div class="degrade"></div>
                 <span>${quizzes[i].title}</span>
-            </div>`
-    }
+            </div>`;
+  }
 }
 
 function selecionarQuizz(op, i) {
-    const aux = document.getElementById('tela-1');
-    aux.classList.toggle('escondido');
+  const aux = document.getElementById("tela-1");
+  aux.classList.toggle("escondido");
 
-    renderizarQuizzTela3A7(i);
+  renderizarQuizzTela3A7(i);
 }
 
 function renderizarQuizzTela3A7(i) {
-    const aux = document.querySelector('.container-quizzes');
-    aux.classList.toggle('escondido');
+  const aux = document.querySelector(".container-quizzes");
+  aux.classList.toggle("escondido");
 
-    const ulQuizz = document.querySelector('.quizzes');
+  const ulQuizz = document.querySelector(".quizzes");
 
-    ulQuizz.innerHTML = '';
+  ulQuizz.innerHTML = "";
 
-    quizz = quizzes[i];
+  quizz = quizzes[i];
 
-    ulQuizz.innerHTML += `
+  ulQuizz.innerHTML += `
         <div class="topo-quizz">
             <img src="${quizz.image}">
             <a>${quizz.title}</a>
-        </div>`
+        </div>`;
 
-    let str = gerarString();
+  let str = gerarString();
 
-    ulQuizz.innerHTML += str;
+  ulQuizz.innerHTML += str;
 }
 
 function gerarString() {
-    let str = '';
+  let str = "";
 
-    for (let i = 0; i < quizz.questions.length; i++) { 
-        
-        str += `
+  for (let i = 0; i < quizz.questions.length; i++) {
+    str += `
             <div class="quizz">
                 <div class="pergunta">
                     <a>${quizz.questions[i].title}</a>
                 </div>
-                <div class="alternativas"> `
+                <div class="alternativas"> `;
 
-        for (let j = 0; j < quizz.questions[i].answers.length; j++) {
-
-            str += `        
+    for (let j = 0; j < quizz.questions[i].answers.length; j++) {
+      str += `        
                     <div class="opcao" id="${i}" onclick="selecionarOpcao(this, ${i}, ${j})">
                         <img src="${quizz.questions[i].answers[j].image}">
                         <a>${quizz.questions[i].answers[j].text}</a>
-                    </div>`
-        }
-        
-        str += `
-                </div>
-            </div> `
+                    </div>`;
     }
 
-    return str;
+    str += `
+                </div>
+            </div> `;
+  }
+
+  return str;
 }
 
 function selecionarOpcao(op, i, j) {
-    if (quizz.questions[i].answers[j].isCorrectAnswer == true) {
-        respostaCorreta(op);
-    } else {
-        respostaErrada(op);
-    }
-    trancaOutras(op, i);
+  if (quizz.questions[i].answers[j].isCorrectAnswer == true) {
+    respostaCorreta(op);
+  } else {
+    respostaErrada(op);
+  }
+  trancaOutras(op, i);
 }
 
 function respostaCorreta(op, i) {
-    const textoOpcao = op.querySelector('a');
-    textoOpcao.classList.toggle('selecionado-certo');
-    op.classList.toggle('trancado');
+  const textoOpcao = op.querySelector("a");
+  textoOpcao.classList.toggle("selecionado-certo");
+  op.classList.toggle("trancado");
 }
 
 function respostaErrada(op) {
-    const textoOpcao = op.querySelector('a');
-    textoOpcao.classList.toggle('selecionado-errado');
-    op.classList.toggle('trancado');
+  const textoOpcao = op.querySelector("a");
+  textoOpcao.classList.toggle("selecionado-errado");
+  op.classList.toggle("trancado");
 }
 
 function trancaOutras(op, i) {
+  const aux = document.querySelectorAll(".opcao");
 
-    const aux = document.querySelectorAll('.opcao');
-
-    for (let k = 0; k < aux.length; k++) {
-        if (op != aux[k] && aux[k].id == i) {
-            aux[k].classList.toggle('nao-selecionado');
-            aux[k].classList.toggle('trancado');
-        }
+  for (let k = 0; k < aux.length; k++) {
+    if (op != aux[k] && aux[k].id == i) {
+      aux[k].classList.toggle("nao-selecionado");
+      aux[k].classList.toggle("trancado");
     }
+  }
 }
 
-function comparador() { 
-	return Math.random() - 0.5; 
+function comparador() {
+  return Math.random() - 0.5;
 }
-
 
 //códido Nilton , validar entradas do quiz
 
@@ -234,4 +232,10 @@ function criarQuiz() {
 
   tela1.classList.add("escondido");
   tela3.classList.remove("escondido");
+}
+
+// - Função que expande/colapsa pergunta
+function expandePergunta(num) {
+  const perguntaExpande = document.querySelector("#pergunta-" + num);
+  perguntaExpande.classList.toggle("escondido");
 }

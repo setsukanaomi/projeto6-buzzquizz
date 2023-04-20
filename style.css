@@ -105,19 +105,19 @@ h2 {
 }
 
 .containerQuizzes div {
-    width: 340px;
-    height: 181px;    
-    margin-right: 10px;
-    margin-bottom: 12px;
+  width: 340px;
+  height: 181px;
+  margin-right: 10px;
+  margin-bottom: 12px;
 }
 
 .divQuiz {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
 }
 
 .divQuiz img {
@@ -127,10 +127,15 @@ h2 {
 }
 
 .degrade {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.5) 64.58%,
+    #000000 100%
+  );
 }
 
 .containerQuizzes span {
@@ -244,12 +249,12 @@ ul {
 }
 
 .container-quizzes {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
 }
 
 .quizzes {
@@ -279,9 +284,9 @@ ul {
 }
 
 .pergunta a {
-    font-weight: 700;
-    font-size: 23px;
-    color: #FFFFFF;
+  font-weight: 700;
+  font-size: 23px;
+  color: #ffffff;
 }
 
 .alternativas {
@@ -300,7 +305,7 @@ ul {
   cursor: pointer;
 }
 
-.opcao img{
+.opcao img {
   width: 330px;
   height: 175px;
 }
@@ -313,15 +318,15 @@ ul {
 }
 
 .selecionado-errado {
-  color: #FF4B4B;
+  color: #ff4b4b;
 }
 
 .selecionado-certo {
-  color: #009C22;
+  color: #009c22;
 }
 
 .nao-selecionado {
-  opacity: 30%;;
+  opacity: 30%;
 }
 
 .trancado {
