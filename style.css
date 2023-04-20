@@ -69,14 +69,13 @@ h2 {
 .botaoQuiz {
   width: 136px;
   height: 40px;
-
+  cursor: pointer;
   font-weight: 400;
   font-size: 21px;
   line-height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #ec362d;
   border: 1px dashed #ec362d;
   border-radius: 50px;
