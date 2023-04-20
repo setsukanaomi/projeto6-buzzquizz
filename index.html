@@ -79,12 +79,24 @@
     <div id="tela-3" class="containers-telas escondido">
       <span>Comece pelo começo</span>
       <div class="infoTelas">
-        <input type="text" placeholder="Título do seu quizz" />
-        <input type="text" placeholder="URL da imagem do seu quizz" />
-        <input type="text" placeholder="Quantidade de perguntas do seu quizz" />
-        <input type="text" placeholder="Quantidade de níveis do quizz" />
+        <input class="titulo" type="text" placeholder="Título do seu quizz" />
+        <input
+          class="url"
+          type="text"
+          placeholder="URL da imagem do seu quizz"
+        />
+        <input
+          class="perguntas"
+          type="text"
+          placeholder="Quantidade de perguntas do seu quizz"
+        />
+        <input
+          class="niveis"
+          type="text"
+          placeholder="Quantidade de níveis do quizz"
+        />
       </div>
-      <div class="prosseguirBotao">
+      <div class="prosseguirBotao" onclick="validarEntradas()">
         <p>Prosseguir para criar perguntas</p>
       </div>
     </div>

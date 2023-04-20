@@ -70,3 +70,33 @@ function comparador() {
 
 
 nomes.sort(comparador); */
+
+//códido Nilton , validar entradas do quiz
+
+function validarEntradas() {
+  const tituloQuiz = document.querySelector(".titulo");
+  const titulo = tituloQuiz.value;
+
+  const imagem = document.querySelector(".url");
+  const urlImagem = imagem.value;
+
+  const perguntas = document.querySelector(".perguntas");
+  const qtdPerguntas = perguntas.value;
+
+  const niveis = document.querySelector(".niveis");
+  const qtdNiveis = niveis.value;
+
+  if (
+    titulo.length < 20 ||
+    titulo.length > 65 ||
+    qtdPerguntas < 3 ||
+    qtdNiveis < 2
+  ) {
+    alert(`Favor preencher os dados corretamente:
+        
+        O título deve ter entre 20 e 65 caracteres,
+        URL da imagem deve ter formato de URL,
+        Quantidade de perguntas: no mínimo 3 perguntas,
+        Quantidade de níveis: no mínimo 2.`);
+  }
+}
