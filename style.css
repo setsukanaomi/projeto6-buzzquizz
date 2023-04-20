@@ -319,14 +319,14 @@ ul {
   color: #bababa;
 }
 
-.perguntas {
+.modificar {
   margin-top: 25px;
   width: 600px;
   display: flex;
   flex-direction: column;
 }
 
-.adicionar-perguntas {
+.add-ou-modifica {
   height: 74px;
   display: flex;
   width: 560px;
@@ -336,4 +336,5 @@ ul {
 
 button {
   border: none;
+  cursor: pointer;
 }

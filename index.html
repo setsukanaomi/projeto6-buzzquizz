@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div id="tela-3" class="containers-telas escondido">
+    <div id="tela-3-comece" class="containers-telas escondido">
       <span>Comece pelo começo</span>
       <div class="infoTelas">
         <input class="titulo" type="text" placeholder="Título do seu quizz" />
@@ -101,7 +101,7 @@
       </div>
     </div>
 
-    <div id="tela-4" class="containers-telas">
+    <div id="tela-4-perguntas" class="containers-telas escondido">
       <span>Crie suas perguntas</span>
       <div class="infoTelas">
         <h2 class="procedimentos">Pergunta 1</h2>
@@ -166,6 +166,46 @@
       </div>
       <div class="prosseguirBotao" onclick="validaPerguntas()">
         <p>Prosseguir para criar níveis</p>
+      </div>
+    </div>
+
+    <div id="tela-5-niveis" class="containers-telas">
+      <span>Agora, decida os níveis</span>
+      <div class="infoTelas">
+        <h2 class="procedimentos">Nível 1</h2>
+        <input class="tituloNivel" type="text" placeholder="Título do nível" />
+        <input
+          class="porcentagemAcerto"
+          type="text"
+          placeholder="% de acerto mínima"
+        />
+        <input
+          class="urlNivel"
+          type="text"
+          placeholder="URL da imagem do nível"
+        />
+        <input
+          class="descricaoNivel"
+          type="text"
+          placeholder="Descrição do nível"
+        />
+      </div>
+      <div class="perguntas">
+        <div class="adicionar-perguntas">
+          <h2>Nível 2</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+        <div class="adicionar-perguntas">
+          <h2>Nível 3</h2>
+          <div>
+            <button><img src="./imagens/botaopergunta.png" /></button>
+          </div>
+        </div>
+      </div>
+      <div class="prosseguirBotao">
+        <p>Finalizar Quizz</p>
       </div>
     </div>
 

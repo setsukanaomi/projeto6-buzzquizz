@@ -101,7 +101,7 @@ function validarEntradas() {
   }
 }
 
-//- Código Naomi
+//- Código Naomi - Validador de Perguntas (Desktop-9)
 
 function validaPerguntas() {
   const textoPergunta = document.querySelector(".textoPergunta");
