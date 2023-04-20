@@ -69,14 +69,13 @@ h2 {
 .botaoQuiz {
   width: 136px;
   height: 40px;
-
+  cursor: pointer;
   font-weight: 400;
   font-size: 21px;
   line-height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #ec362d;
   border: 1px dashed #ec362d;
   border-radius: 50px;
@@ -286,46 +285,47 @@ ul {
 }
 
 .alternativas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    width: 690px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  width: 690px;
 }
 
 .opcao {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .opcao img{
-    width: 330px;
-    height: 175px;
+  width: 330px;
+  height: 175px;
 }
 
 .opcao a {
-    display: flex;
-    margin-top: 10px;
-    font-weight: 700;
-    font-size: 20px;
+  display: flex;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .selecionado-errado {
-    color: #FF4B4B;
+  color: #FF4B4B;
 }
 
 .selecionado-certo {
-    color: #009C22;
+  color: #009C22;
 }
 
 .nao-selecionado {
-    opacity: 30%;;
+  opacity: 30%;;
 }
 
 .trancado {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* Naomi - Tela 4 */

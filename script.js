@@ -3,10 +3,11 @@ axios.defaults.headers.common['Authorization'] = '97eVqU1AsszfPTccPmhDFe5m';
 let quizzes = [];
 let quizz = '';
 
+obterQuizz();
+
 function obterQuizz() {
     const requisicao = axios.get('https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes');
     requisicao.then(processarQuizz);
-    processarQuizz
 }
 
 function processarQuizz(res) {
@@ -192,7 +193,45 @@ function validaPerguntas() {
   alert("Dados preenchidos corretamente!");
 }
 
+// - Código Naomi - Função que valida URL
 function validUrl(url) {
   const regex = /^(ftp|http|https):\/\/[^ "]+$/;
   return regex.test(url);
+}
+
+//- Código Naomi - Validador de Níveis (Desktop-10)
+function validaNivel() {
+  const tituloNivel = document.querySelector(".tituloNivel");
+  const nivelTitulo = tituloNivel.value;
+
+  const porcentMinima = document.querySelector(".porcentagemAcerto");
+  const porcentagem = porcentMinima.value;
+
+  const urlNivel = document.querySelector(".urlNivel");
+  const nivelUrl = urlNivel.value;
+
+  const descricaoNivel = document.querySelector(".descricaoNivel");
+  const descricao = descricaoNivel.value;
+
+  if (
+    nivelTitulo.length < 10 ||
+    isNaN(porcentagem) ||
+    porcentagem < 0 ||
+    porcentagem > 100 ||
+    !validUrl(nivelUrl) ||
+    descricao.length < 30
+  ) {
+    alert("Por favor, preencha os dados corretamente.");
+    return;
+  }
+  alert("Dados preenchidos corretamente!");
+}
+
+// - Função quando clica Criar Quizz vai para Tela-3 Comece
+function criarQuiz() {
+  const tela1 = document.querySelector("#tela-1");
+  const tela3 = document.querySelector("#tela-3-comece");
+
+  tela1.classList.add("escondido");
+  tela3.classList.remove("escondido");
 }
