@@ -2,7 +2,7 @@ axios.defaults.headers.common["Authorization"] = "97eVqU1AsszfPTccPmhDFe5m";
 
 let quizzes = [];
 let quizz = "";
-
+let qtdNiveis;
 obterQuizz();
 
 function obterQuizz() {
@@ -127,7 +127,6 @@ function comparador() {
 //códido Nilton , validar entradas do quiz
 
 function validarEntradas() {
-  debugger;
   const tituloQuiz = document.querySelector(".titulo");
   const titulo = tituloQuiz.value;
 
@@ -138,7 +137,7 @@ function validarEntradas() {
   const qtdPerguntas = perguntas.value;
 
   const niveis = document.querySelector(".niveis");
-  const qtdNiveis = niveis.value;
+  qtdNiveis = niveis.value;
 
   if (titulo.length < 20 || titulo.length > 65 || qtdPerguntas < 3 || qtdNiveis < 2 || !validUrl(urlImagem)) {
     alert(`Favor preencher os dados corretamente:
@@ -171,6 +170,12 @@ function paraPerguntas(qtdPerguntas) {
 function expandePergunta(num) {
   const perguntaExpande = document.querySelector("#pergunta-" + num);
   perguntaExpande.classList.toggle("escondido");
+}
+
+// - Função que expande/colapsa nível
+function expandeNivel(num) {
+  const nivelExpande = document.querySelector("#nivel-" + num);
+  nivelExpande.classList.toggle("escondido");
 }
 
 // - Função quando clica Criar Quizz vai para Tela-3 Comece
@@ -225,6 +230,44 @@ function criaPerguntas(qtdPerguntas) {
 `;
 }
 
+// Função que cria os níveis baseado na qtdNiveis
+
+function criaNiveis() {
+  const divNiveis = document.querySelector("#niveis-5");
+  for (let index = 0; index < qtdNiveis; index++) {
+    const escondido = index > 0 ? "escondido" : "";
+    divNiveis.innerHTML += `
+      <div data-test="level-ctn">
+        <div class="modificar">
+          <div class="add-ou-modifica">
+            <h2>Nível ${index + 1}</h2>
+            <div><button data-test="toggle" onclick="expandeNivel(${
+              index + 1
+            })"><img src="./imagens/modificar.png" /></button></div>
+          </div>
+        </div>
+        <div id="nivel-${index + 1}" class="infoTelas ${escondido}">
+          <input data-test="level-input" class="tituloNivel${index + 1}" type="text" placeholder="Título do nível" />
+          <input data-test="level-percent-input" class="porcentagemAcerto${
+            index + 1
+          }" type="text" placeholder="% de acerto mínima" />
+          <input data-test="level-img-input" class="urlNivel${
+            index + 1
+          }" type="text" placeholder="URL da imagem do nível" />
+          <input data-test="level-description-input" class="descricaoNivel${
+            index + 1
+          }" type="text" placeholder="Descrição do nível" />
+        </div>
+      </div>
+    `;
+  }
+  divNiveis.innerHTML += `
+    <div data-test="finish" class="prosseguirBotao">
+      <p>Finalizar Quizz</p>
+    </div>
+  `;
+}
+
 //- Código Naomi - Validador de Perguntas (Desktop-9)
 
 function validaPerguntas() {
@@ -266,6 +309,8 @@ function paraNiveis() {
 
   tela4.classList.add("escondido");
   tela5.classList.remove("escondido");
+
+  criaNiveis();
 }
 
 function voltarHome() {
