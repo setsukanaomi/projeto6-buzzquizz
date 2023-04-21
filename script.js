@@ -272,10 +272,9 @@ function paraNiveis() {
   tela5.classList.remove("escondido");
 }
 
-function voltarHome(){
+function voltarHome() {
   const tela6 = document.querySelector(".tela-6-quizpronto");
   const tela1 = document.querySelector("#tela-1");
   tela6.classList.add("escondido");
   tela1.classList.remove("escondido");
-  
 }
