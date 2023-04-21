@@ -19,9 +19,7 @@
     <div id="tela-1" class="containers-telas">
       <div class="criarQuizz">
         <p>Você não criou nenhum quizz ainda :(</p>
-        <div class="botaoQuiz" data-test="create-btn" onclick="criarQuiz()">
-          Criar Quizz
-        </div>
+        <div class="botaoQuiz" data-test="create-btn" onclick="criarQuiz()">Criar Quizz</div>
       </div>
       <div class="todosQuizzes">
         <p>Todos os Quizzes</p>
@@ -34,11 +32,7 @@
       <div class="favoritos">
         <div class="seusQuizzes">
           <p>Seus Quizzes</p>
-          <ion-icon
-            name="add-circle"
-            data-test="create-btn"
-            onclick="criarQuiz()"
-          ></ion-icon>
+          <ion-icon name="add-circle" data-test="create-btn" onclick="criarQuiz()"></ion-icon>
         </div>
       </div>
       <div class="todosQuizzes">
@@ -76,237 +70,14 @@
           placeholder="Quantidade de níveis do quizz"
         />
       </div>
-      <div
-        class="prosseguirBotao"
-        data-test="go-create-questions"
-        onclick="validarEntradas()"
-      >
+      <div class="prosseguirBotao" data-test="go-create-questions" onclick="validarEntradas()">
         <p>Prosseguir para criar perguntas</p>
       </div>
     </div>
 
     <div id="tela-4-perguntas" class="containers-telas escondido">
       <span>Crie suas perguntas</span>
-      <div id="pergunta-1" data-test="question-ctn" class="infoTelas">
-        <h2 class="procedimentos">Pergunta 1</h2>
-        <input
-          class="textoPergunta"
-          data-test="question-input"
-          type="text"
-          placeholder="Texto da pergunta"
-        />
-        <input
-          class="cor"
-          data-test="question-color-input"
-          type="text"
-          placeholder="Cor de fundo da pergunta"
-        />
-
-        <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input
-          class="respostas"
-          data-test="correct-answer-input"
-          type="text"
-          placeholder="Resposta correta"
-        />
-        <input
-          class="urlPerguntasImg"
-          data-test="correct-img-input"
-          type="text"
-          placeholder="URL da imagem"
-        />
-
-        <div class="procedimentos"><h2>Respostas incorretas</h2></div>
-        <input
-          class="respostas"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 1"
-        />
-        <input
-          class="urlPerguntasImg"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 1"
-        />
-        <input
-          class="respostas"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 2"
-        />
-        <input
-          class="urlPerguntasImg"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 2"
-        />
-        <input
-          class="respostas"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 3"
-        />
-        <input
-          class="urlPerguntasImg"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 3"
-        />
-      </div>
-      <div class="modificar">
-        <div class="add-ou-modifica">
-          <h2>Pergunta 2</h2>
-          <div>
-            <button data-test="toggle" onclick="expandePergunta(2)">
-              <img src="./imagens/modificar.png" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div id="pergunta-2" data-test="question-ctn" class="infoTelas escondido">
-        <input
-          class="textoPergunta2"
-          data-test="question-input"
-          type="text"
-          placeholder="Texto da pergunta"
-        />
-        <input
-          class="cor2"
-          data-test="question-color-input"
-          type="text"
-          placeholder="Cor de fundo da pergunta"
-        />
-
-        <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input
-          class="respostas2"
-          data-test="correct-answer-input"
-          type="text"
-          placeholder="Resposta correta"
-        />
-        <input
-          class="urlPerguntasImg2"
-          data-test="correct-img-input"
-          type="text"
-          placeholder="URL da imagem"
-        />
-
-        <div class="procedimentos"><h2>Respostas incorretas</h2></div>
-        <input
-          class="respostas2"
-          type="text"
-          placeholder="Resposta incorreta 1"
-        />
-        <input
-          class="urlPerguntasImg2"
-          type="text"
-          placeholder="URL da imagem 1"
-        />
-        <input
-          class="respostas2"
-          type="text"
-          placeholder="Resposta incorreta 2"
-        />
-        <input
-          class="urlPerguntasImg2"
-          type="text"
-          placeholder="URL da imagem 2"
-        />
-        <input
-          class="respostas2"
-          type="text"
-          placeholder="Resposta incorreta 3"
-        />
-        <input
-          class="urlPerguntasImg2"
-          type="text"
-          placeholder="URL da imagem 3"
-        />
-      </div>
-      <div class="modificar">
-        <div class="add-ou-modifica">
-          <h2>Pergunta 3</h2>
-          <div>
-            <button data-test="toggle" onclick="expandePergunta(3)">
-              <img src="./imagens/modificar.png" />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div id="pergunta-3" data-test="question-ctn" class="infoTelas escondido">
-        <input
-          class="textoPergunta3"
-          data-test="question-input"
-          type="text"
-          placeholder="Texto da pergunta"
-        />
-        <input
-          class="cor3"
-          data-test="question-color-input"
-          type="text"
-          placeholder="Cor de fundo da pergunta"
-        />
-
-        <div class="procedimentos"><h2>Resposta correta</h2></div>
-        <input
-          class="respostas3"
-          data-test="correct-answer-input"
-          type="text"
-          placeholder="Resposta correta"
-        />
-        <input
-          class="urlPerguntasImg3"
-          data-test="correct-img-input"
-          type="text"
-          placeholder="URL da imagem"
-        />
-
-        <div class="procedimentos"><h2>Respostas incorretas</h2></div>
-        <input
-          class="respostas3"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 1"
-        />
-        <input
-          class="urlPerguntasImg3"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 1"
-        />
-        <input
-          class="respostas3"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 2"
-        />
-        <input
-          class="urlPerguntasImg3"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 2"
-        />
-        <input
-          class="respostas3"
-          data-test="wrong-answer-input"
-          type="text"
-          placeholder="Resposta incorreta 3"
-        />
-        <input
-          class="urlPerguntasImg3"
-          data-test="wrong-img-input"
-          type="text"
-          placeholder="URL da imagem 3"
-        />
-      </div>
-      <div
-        class="prosseguirBotao"
-        data-test="go-create-levels"
-        onclick="validaPerguntas()"
-      >
-        <p>Prosseguir para criar níveis</p>
-      </div>
+      <div id="perguntas-4" class="infoTelas"></div>
     </div>
 
     <div id="tela-5-niveis" class="containers-telas escondido">
@@ -314,21 +85,9 @@
       <div class="infoTelas">
         <h2 class="procedimentos">Nível 1</h2>
         <input class="tituloNivel" type="text" placeholder="Título do nível" />
-        <input
-          class="porcentagemAcerto"
-          type="text"
-          placeholder="% de acerto mínima"
-        />
-        <input
-          class="urlNivel"
-          type="text"
-          placeholder="URL da imagem do nível"
-        />
-        <input
-          class="descricaoNivel"
-          type="text"
-          placeholder="Descrição do nível"
-        />
+        <input class="porcentagemAcerto" type="text" placeholder="% de acerto mínima" />
+        <input class="urlNivel" type="text" placeholder="URL da imagem do nível" />
+        <input class="descricaoNivel" type="text" placeholder="Descrição do nível" />
       </div>
       <div class="modificar">
         <div class="add-ou-modifica">
@@ -349,9 +108,6 @@
       </div>
     </div>
 
-    <!-- as telas irão compartilhar o mesmo nome CSS, containers-telas e infoTelas, para facilitar
-    e evitar muitas classes CSS-->
-
     <!-- codigo andre-->
     <div class="container-quizzes escondido">
       <div class="quizzes"></div>
@@ -361,10 +117,7 @@
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
     ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
   </body>

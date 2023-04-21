@@ -6,9 +6,7 @@ let quizz = "";
 obterQuizz();
 
 function obterQuizz() {
-  const requisicao = axios.get(
-    "https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes"
-  );
+  const requisicao = axios.get("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes");
   requisicao.then(processarQuizz);
 }
 
@@ -129,6 +127,7 @@ function comparador() {
 //códido Nilton , validar entradas do quiz
 
 function validarEntradas() {
+  debugger;
   const tituloQuiz = document.querySelector(".titulo");
   const titulo = tituloQuiz.value;
 
@@ -156,42 +155,7 @@ function validarEntradas() {
         Quantidade de níveis: no mínimo 2.`);
     return;
   }
-  paraPerguntas();
-}
-
-//- Código Naomi - Validador de Perguntas (Desktop-9)
-
-function validaPerguntas() {
-  const textoPergunta = document.querySelector(".textoPergunta");
-  const pergunta = textoPergunta.value;
-
-  const corPergunta = document.querySelector(".cor");
-  const cor = corPergunta.value;
-  const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-
-  const respostasPerguntas = document.querySelectorAll(".respostas");
-  const respostas = [];
-  respostasPerguntas.forEach((resposta) => {
-    respostas.push(resposta.value);
-  });
-
-  const urlsRespostas = document.querySelectorAll(".urlPerguntasImg");
-  const urlImgs = [];
-  urlsRespostas.forEach((url) => {
-    urlImgs.push(url.value);
-  });
-  if (
-    pergunta.length < 20 ||
-    !decimal.test(cor) ||
-    respostas[0] === "" ||
-    respostas.length < 2 ||
-    respostas.includes("") ||
-    urlImgs.some((url) => !validUrl(url))
-  ) {
-    alert("Por favor, preencha os dados corretamente.");
-    return;
-  }
-  alert("Dados preenchidos corretamente!");
+  paraPerguntas(qtdPerguntas);
 }
 
 // - Código Naomi - Função que valida URL
@@ -200,32 +164,19 @@ function validUrl(url) {
   return regex.test(url);
 }
 
-//- Código Naomi - Validador de Níveis (Desktop-10)
-function validaNivel() {
-  const tituloNivel = document.querySelector(".tituloNivel");
-  const nivelTitulo = tituloNivel.value;
+// - Função quando clica Prosseguir Perguntas vai para Tela-4 Perguntas
+function paraPerguntas(qtdPerguntas) {
+  const tela3 = document.querySelector("#tela-3-comece");
+  const tela4 = document.querySelector("#tela-4-perguntas");
+  tela3.classList.add("escondido");
+  tela4.classList.remove("escondido");
+  criaPerguntas(qtdPerguntas);
+}
 
-  const porcentMinima = document.querySelector(".porcentagemAcerto");
-  const porcentagem = porcentMinima.value;
-
-  const urlNivel = document.querySelector(".urlNivel");
-  const nivelUrl = urlNivel.value;
-
-  const descricaoNivel = document.querySelector(".descricaoNivel");
-  const descricao = descricaoNivel.value;
-
-  if (
-    nivelTitulo.length < 10 ||
-    isNaN(porcentagem) ||
-    porcentagem < 0 ||
-    porcentagem > 100 ||
-    !validUrl(nivelUrl) ||
-    descricao.length < 30
-  ) {
-    alert("Por favor, preencha os dados corretamente.");
-    return;
-  }
-  alert("Dados preenchidos corretamente!");
+// - Função que expande/colapsa pergunta
+function expandePergunta(num) {
+  const perguntaExpande = document.querySelector("#pergunta-" + num);
+  perguntaExpande.classList.toggle("escondido");
 }
 
 // - Função quando clica Criar Quizz vai para Tela-3 Comece
@@ -239,17 +190,84 @@ function criarQuiz() {
   tela2.classList.add("escondido");
 }
 
-// - Função quando clica Prosseguir Perguntas vai para Tela-4 Perguntas
-function paraPerguntas() {
-  const tela3 = document.querySelector("#tela-3-comece");
-  const tela4 = document.querySelector("#tela-4-perguntas");
+// Função que cria as perguntas baseado na qtdPerguntas
+function criaPerguntas(qtdPerguntas) {
+  const divPerguntas = document.querySelector("#perguntas-4");
+  for (let index = 0; index < qtdPerguntas; index++) {
+    const escondido = index > 0 ? "escondido" : "";
+    divPerguntas.innerHTML += `
+    <div class="modificar"><div class="add-ou-modifica">
+      <h2>Pergunta ${index + 1}</h2>
+      <div><button onclick="expandePergunta(${
+        index + 1
+      })"><img src="./imagens/modificar.png" /></button></div>
+  </div>
+  </div>
+  <div id="pergunta-${index + 1}" class="infoTelas ${escondido}">
+    <input class="textoPergunta${index + 1}" type="text" placeholder="Texto da pergunta"/>
+    <input class="cor${index + 1}" type="text" placeholder="Cor de fundo da pergunta"/>
 
-  tela3.classList.add("escondido");
-  tela4.classList.remove("escondido");
+    <div class="procedimentos"><h2>Resposta correta</h2></div>
+    <input class="respostas${index + 1}" type="text" placeholder="Resposta correta" />
+    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem"/>
+
+    <div class="procedimentos"><h2>Respostas incorretas</h2></div>
+    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 1"/>
+    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 1"/>
+
+    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 2"/>
+    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 2"/>
+
+    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 3"/>
+    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 3"/>
+  </div>`;
+  }
+  divPerguntas.innerHTML += `
+  <div class="prosseguirBotao" onclick="validaPerguntas()">
+  <p>Prosseguir para criar níveis</p>
+  </div>
+`;
 }
 
-// - Função que expande/colapsa pergunta
-function expandePergunta(num) {
-  const perguntaExpande = document.querySelector("#pergunta-" + num);
-  perguntaExpande.classList.toggle("escondido");
+//- Código Naomi - Validador de Perguntas (Desktop-9)
+
+function validaPerguntas() {
+  const textoPergunta = document.querySelector(".textoPergunta1");
+  const pergunta = textoPergunta.value;
+
+  const corPergunta = document.querySelector(".cor1");
+  const cor = corPergunta.value;
+  const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+  const respostasPerguntas = document.querySelectorAll(".respostas1");
+  const respostas = [];
+  respostasPerguntas.forEach((resposta) => {
+    if (resposta.value.length > 0) {
+      respostas.push(resposta.value);
+    }
+  });
+
+  const urlsRespostas = document.querySelectorAll(".urlPerguntasImg1");
+  const urlImgs = [];
+  urlsRespostas.forEach((url) => {
+    if (validUrl(url.value)) {
+      urlImgs.push(url.value);
+    }
+  });
+
+  if (pergunta.length < 20 || !decimal.test(cor) || respostas.length < 2 || urlImgs.length < 2) {
+    alert("Por favor, preencha os dados corretamente.");
+    return;
+  }
+  alert("Dados preenchidos corretamente!");
+  paraNiveis();
+}
+
+// - Função que vai para tela de níveis (Desktop-10)
+function paraNiveis() {
+  const tela4 = document.querySelector("#tela-4-perguntas");
+  const tela5 = document.querySelector("#tela-5-niveis");
+
+  tela4.classList.add("escondido");
+  tela5.classList.remove("escondido");
 }
