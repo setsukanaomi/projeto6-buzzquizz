@@ -75,10 +75,15 @@ function gerarString() {
 
         for (let j = 0; j < quizz.questions[i].answers.length; j++) {
 
+          if (quizz.questions[i].answers[j].text.length > 20)
+            var straux = quizz.questions[i].answers[j].text.substring(0, 20);
+          else
+            var straux = quizz.questions[i].answers[j].text;
+
             str += `        
                     <div class="opcao" id="${i}" onclick="selecionarOpcao(this, ${i}, ${j})">
                         <img src="${quizz.questions[i].answers[j].image}">
-                        <a>${quizz.questions[i].answers[j].text}</a>
+                        <a>${straux}</a>
                     </div>`
         }
         
