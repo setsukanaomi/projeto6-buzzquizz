@@ -140,13 +140,7 @@ function validarEntradas() {
   const niveis = document.querySelector(".niveis");
   const qtdNiveis = niveis.value;
 
-  if (
-    titulo.length < 20 ||
-    titulo.length > 65 ||
-    qtdPerguntas < 3 ||
-    qtdNiveis < 2 ||
-    !validUrl(urlImagem)
-  ) {
+  if (titulo.length < 20 || titulo.length > 65 || qtdPerguntas < 3 || qtdNiveis < 2 || !validUrl(urlImagem)) {
     alert(`Favor preencher os dados corretamente:
         
         O título deve ter entre 20 e 65 caracteres,
@@ -198,32 +192,32 @@ function criaPerguntas(qtdPerguntas) {
     divPerguntas.innerHTML += `
     <div class="modificar"><div class="add-ou-modifica">
       <h2>Pergunta ${index + 1}</h2>
-      <div><button onclick="expandePergunta(${
+      <div><button data-test="toggle" onclick="expandePergunta(${
         index + 1
       })"><img src="./imagens/modificar.png" /></button></div>
   </div>
   </div>
-  <div id="pergunta-${index + 1}" class="infoTelas ${escondido}">
-    <input class="textoPergunta${index + 1}" type="text" placeholder="Texto da pergunta"/>
-    <input class="cor${index + 1}" type="text" placeholder="Cor de fundo da pergunta"/>
+  <div data-test="question-ctn" id="pergunta-${index + 1}" class="infoTelas ${escondido}">
+    <input data-test="question-input" class="textoPergunta${index + 1}" type="text" placeholder="Texto da pergunta"/>
+    <input data-test="question-color-input" class="cor${index + 1}" type="text" placeholder="Cor de fundo da pergunta"/>
 
     <div class="procedimentos"><h2>Resposta correta</h2></div>
-    <input class="respostas${index + 1}" type="text" placeholder="Resposta correta" />
-    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem"/>
+    <input data-test="correct-answer-input" class="respostas${index + 1}" type="text" placeholder="Resposta correta" />
+    <input data-test="correct-img-input" class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem"/>
 
     <div class="procedimentos"><h2>Respostas incorretas</h2></div>
-    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 1"/>
-    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 1"/>
+    <input data-test="wrong-answer-input" class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 1"/>
+    <input data-test="wrong-img-input" class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 1"/>
 
-    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 2"/>
-    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 2"/>
+    <input data-test="wrong-answer-input" class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 2"/>
+    <input data-test="wrong-img-input" class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 2"/>
 
-    <input class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 3"/>
-    <input class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 3"/>
+    <input data-test="wrong-answer-input" class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 3"/>
+    <input data-test="wrong-img-input" class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 3"/>
   </div>`;
   }
   divPerguntas.innerHTML += `
-  <div class="prosseguirBotao" onclick="validaPerguntas()">
+  <div data-test="go-create-levels" class="prosseguirBotao" onclick="validaPerguntas()">
   <p>Prosseguir para criar níveis</p>
   </div>
 `;

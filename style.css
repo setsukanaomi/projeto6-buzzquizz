@@ -130,12 +130,7 @@ h2 {
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(0, 0, 0, 0.5) 64.58%,
-    #000000 100%
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
 }
 
 .containerQuizzes span {
@@ -388,12 +383,7 @@ button {
   left: 0;
   top: 0;
 
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(0, 0, 0, 0.5) 65.62%,
-    #000000 100%
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, #000000 100%);
 }
 .div-imagem-final span {
   font-weight: 400;
