@@ -190,6 +190,7 @@ function criaPerguntas(qtdPerguntas) {
   for (let index = 0; index < qtdPerguntas; index++) {
     const escondido = index > 0 ? "escondido" : "";
     divPerguntas.innerHTML += `
+    <div data-test="question-ctn">
     <div class="modificar"><div class="add-ou-modifica">
       <h2>Pergunta ${index + 1}</h2>
       <div><button data-test="toggle" onclick="expandePergunta(${
@@ -197,7 +198,7 @@ function criaPerguntas(qtdPerguntas) {
       })"><img src="./imagens/modificar.png" /></button></div>
   </div>
   </div>
-  <div data-test="question-ctn" id="pergunta-${index + 1}" class="infoTelas ${escondido}">
+  <div id="pergunta-${index + 1}" class="infoTelas ${escondido}">
     <input data-test="question-input" class="textoPergunta${index + 1}" type="text" placeholder="Texto da pergunta"/>
     <input data-test="question-color-input" class="cor${index + 1}" type="text" placeholder="Cor de fundo da pergunta"/>
 
@@ -214,6 +215,7 @@ function criaPerguntas(qtdPerguntas) {
 
     <input data-test="wrong-answer-input" class="respostas${index + 1}" type="text" placeholder="Resposta incorreta 3"/>
     <input data-test="wrong-img-input" class="urlPerguntasImg${index + 1}" type="text" placeholder="URL da imagem 3"/>
+  </div>
   </div>`;
   }
   divPerguntas.innerHTML += `
