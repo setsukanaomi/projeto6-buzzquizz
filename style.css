@@ -362,3 +362,80 @@ button {
   border: none;
   cursor: pointer;
 }
+.tela-quizzpronto {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.div-imagem-final {
+  width: 500px;
+  height: 266px;
+  border-radius: 5px;
+  position: relative;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+.div-imagem-final img {
+  width: 500px;
+  height: 266px;
+  border-radius: 5px;
+}
+.degrade-quizz-final {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.5) 65.62%,
+    #000000 100%
+  );
+}
+.div-imagem-final span {
+  
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 9px 23px;
+
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.acessar-quiz {
+  width: 220px;
+  height: 44px;
+  background-color: #ec362d;
+  border-radius: 15px;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff5f4;
+  margin-top: 45px;
+  cursor: pointer;
+}
+.voltar-home {
+  width: 220px;
+  height: 44px;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9px;
+  color: #818181;
+  cursor: pointer;
+}
