@@ -262,7 +262,7 @@ function criaNiveis() {
     `;
   }
   divNiveis.innerHTML += `
-    <div data-test="finish" class="prosseguirBotao">
+    <div data-test="finish" class="prosseguirBotao" onclick="validaNivel()">
       <p>Finalizar Quizz</p>
     </div>
   `;
@@ -302,6 +302,36 @@ function validaPerguntas() {
   paraNiveis();
 }
 
+// - Código Naomi - Validador de Níveis (Desktop-10)
+
+function validaNivel() {
+  const tituloNivel = document.querySelector(".tituloNivel1");
+  const nivelTitulo = tituloNivel.value;
+
+  const porcentMinima = document.querySelector(".porcentagemAcerto1");
+  const porcentagem = porcentMinima.value;
+
+  const urlNivel = document.querySelector(".urlNivel1");
+  const nivelUrl = urlNivel.value;
+
+  const descricaoNivel = document.querySelector(".descricaoNivel1");
+  const descricao = descricaoNivel.value;
+
+  if (
+    nivelTitulo.length < 10 ||
+    isNaN(porcentagem) ||
+    porcentagem < 0 ||
+    porcentagem > 100 ||
+    !validUrl(nivelUrl) ||
+    descricao.length < 30
+  ) {
+    alert("Por favor, preencha os dados corretamente.");
+    return;
+  }
+  alert("Dados preenchidos corretamente!");
+  paraQuizPronto();
+}
+
 // - Função que vai para tela de níveis (Desktop-10)
 function paraNiveis() {
   const tela4 = document.querySelector("#tela-4-perguntas");
@@ -318,4 +348,12 @@ function voltarHome() {
   const tela1 = document.querySelector("#tela-1");
   tela6.classList.add("escondido");
   tela1.classList.remove("escondido");
+}
+
+// - Função que vai para tela de Quiz Pronto (Desktop-11)
+function paraQuizPronto() {
+  const tela5 = document.querySelector("#tela-5-niveis");
+  const tela6 = document.querySelector("#tela-6-quizpronto");
+  tela5.classList.add("escondido");
+  tela6.classList.remove("escondido");
 }
