@@ -3,6 +3,8 @@ axios.defaults.headers.common["Authorization"] = "97eVqU1AsszfPTccPmhDFe5m";
 let quizzes = [];
 let quizz = "";
 let qtdNiveis;
+let novoQuizz;
+
 obterQuizz();
 
 function obterQuizz() {
@@ -41,6 +43,9 @@ function selecionarQuizz(op, i) {
 }
 
 function renderizarQuizzTela3A7(i) {
+
+  scroll(0,0);
+
   const aux = document.querySelector(".container-quizzes");
   aux.classList.toggle("escondido");
 
@@ -56,15 +61,23 @@ function renderizarQuizzTela3A7(i) {
             <a>${quizz.title}</a>
         </div>`;
 
-  let str = gerarString();
+        
+   let str = gerarString();
 
-  ulQuizz.innerHTML += str;
+   ulQuizz.innerHTML += str;
+
+   const auxcor = document.getElementsByClassName("pergunta");
+   for (let i = 0; i < auxcor.length; i++) {
+    auxcor[i].style.backgroundColor = quizz.questions[i].color;
+   }
 }
+
 
 function gerarString() {
   let str = "";
 
   for (let i = 0; i < quizz.questions.length; i++) {
+
     str += `
             <div class="quizz">
                 <div class="pergunta">
@@ -85,10 +98,7 @@ function gerarString() {
                         <a>${straux}</a>
                     </div>`
         
-            str += `
-                    </div>
-                </div> `
-   } 
+        } 
 
     str += `
                 </div>
@@ -105,6 +115,12 @@ function selecionarOpcao(op, i, j) {
     respostaErrada(op);
   }
   trancaOutras(op, i);
+  if (quizz.questions[0].answers.length > 2) {
+    scroll(0, (i + 1) * 900);
+  }
+  else {
+    scroll(0, (i + 1) * 500);
+  }
 }
 
 function respostaCorreta(op, i) {
@@ -129,6 +145,8 @@ function trancaOutras(op, i) {
     }
   }
 }
+
+
 
 function comparador() {
   return Math.random() - 0.5;
@@ -158,6 +176,7 @@ function validarEntradas() {
         Quantidade de níveis: no mínimo 2.`);
     return;
   }
+
   paraPerguntas(qtdPerguntas);
 }
 
@@ -234,7 +253,7 @@ function criaPerguntas(qtdPerguntas) {
   </div>`;
   }
   divPerguntas.innerHTML += `
-  <div data-test="go-create-levels" class="prosseguirBotao" onclick="validaPerguntas()">
+  <div data-test="go-create-levels" class="prosseguirBotao" onclick="validaPerguntas(${qtdPerguntas})">
   <p>Prosseguir para criar níveis</p>
   </div>
 `;
@@ -280,63 +299,143 @@ function criaNiveis() {
 
 //- Código Naomi - Validador de Perguntas (Desktop-9)
 
-function validaPerguntas() {
-  const textoPergunta = document.querySelector(".textoPergunta1");
-  const pergunta = textoPergunta.value;
+function validaPerguntas(qtdPerguntas) {
+  for (let i = 0; i < qtdPerguntas; i++) {
+    let auxTexto = `.textoPergunta${i+1}`;
+    const textoPergunta = document.querySelector(auxTexto);
+    //console.log(textoPergunta);
+    const pergunta = textoPergunta.value;
 
-  const corPergunta = document.querySelector(".cor1");
-  const cor = corPergunta.value;
-  const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+    let auxCor = `.cor${i+1}`;
+    const corPergunta = document.querySelector(auxCor);
+    const cor = corPergunta.value;
+    const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
-  const respostasPerguntas = document.querySelectorAll(".respostas1");
-  const respostas = [];
-  respostasPerguntas.forEach((resposta) => {
-    if (resposta.value.length > 0) {
-      respostas.push(resposta.value);
+    let auxRespostas = `.respostas${i+1}`;
+    const respostasPerguntas = document.querySelectorAll(auxRespostas);
+    const respostas = [];
+    respostasPerguntas.forEach((resposta) => {
+      if (resposta.value.length > 0) {
+        respostas.push(resposta.value);
+      }
+    });
+
+    let auxUrlRespostas = `.urlPerguntasImg${i+1}`;
+    const urlsRespostas = document.querySelectorAll(auxUrlRespostas);
+    const urlImgs = [];
+    urlsRespostas.forEach((url) => {
+      if (validUrl(url.value)) {
+        urlImgs.push(url.value);
+      }
+    });
+
+    if (pergunta.length < 20 || !decimal.test(cor) || respostas.length < 2 || urlImgs.length < 2) {
+      alert("Por favor, preencha os dados corretamente.");
+      return;
     }
-  });
-
-  const urlsRespostas = document.querySelectorAll(".urlPerguntasImg1");
-  const urlImgs = [];
-  urlsRespostas.forEach((url) => {
-    if (validUrl(url.value)) {
-      urlImgs.push(url.value);
-    }
-  });
-
-  if (pergunta.length < 20 || !decimal.test(cor) || respostas.length < 2 || urlImgs.length < 2) {
-    alert("Por favor, preencha os dados corretamente.");
-    return;
   }
+  
   alert("Dados preenchidos corretamente!");
+  criarObjeto(qtdPerguntas);
   paraNiveis();
+}
+
+
+function criarObjeto(qtdPerguntas) {
+  const tituloQuiz = document.querySelector(".titulo");
+  const titulo = tituloQuiz.value;
+
+  const imagem = document.querySelector(".url");
+  const urlImagem = imagem.value;
+
+  var auxObjTitulo = {
+    title: titulo,
+    image: urlImagem,
+    questions: []
+  }
+
+
+  for (let i = 0; i < qtdPerguntas; i++) {
+    let auxTexto = `.textoPergunta${i+1}`;
+    const textoPergunta = document.querySelector(auxTexto);
+    const pergunta = textoPergunta.value;
+
+    let auxCor = `.cor${i+1}`;
+    const corPergunta = document.querySelector(auxCor);
+    const cor = corPergunta.value;
+
+    let auxRespostas = `.respostas${i+1}`;
+    const respostasPerguntas = document.querySelectorAll(auxRespostas);
+    const respostas = [];
+    respostasPerguntas.forEach((resposta) => {
+        respostas.push(resposta.value);
+    });
+
+    let auxUrlRespostas = `.urlPerguntasImg${i+1}`;
+    const urlsRespostas = document.querySelectorAll(auxUrlRespostas);
+    const urlImgs =  [];
+    urlsRespostas.forEach((url) => {
+        urlImgs.push(url.value);
+    });
+    
+    var auxECorreta = true;
+
+    if (i != 0)
+       auxECorreta = false;
+
+    var auxObjPerguntas = {
+      title: pergunta,
+      color: cor,
+      answers: []
+    }
+
+    for (let j = 0; j < respostas.length; j++) {
+      var auxObjRespostas = {
+        text: respostas[i+1],
+        image: urlImgs[i+1],
+        isCorrectAnswer: auxECorreta
+      }
+
+      auxObjPerguntas.answers.push(auxObjRespostas);
+    }
+
+    auxObjTitulo.questions.push(auxObjPerguntas);
+  }
+
+  console.log(auxObjTitulo);
 }
 
 // - Código Naomi - Validador de Níveis (Desktop-10)
 
 function validaNivel() {
-  const tituloNivel = document.querySelector(".tituloNivel1");
-  const nivelTitulo = tituloNivel.value;
+  for (let i = 0; i < qtdNiveis; i++){
+    let auxTituloNivel = `.tituloNivel${i+1}`;
+    const tituloNivel = document.querySelector(auxTituloNivel);
+    const nivelTitulo = tituloNivel.value;
 
-  const porcentMinima = document.querySelector(".porcentagemAcerto1");
-  const porcentagem = porcentMinima.value;
+    let auxPorcentMinima = `.porcentagemAcerto${i+1}`;
+    const porcentMinima = document.querySelector(auxPorcentMinima);
+    const porcentagem = porcentMinima.value;
 
-  const urlNivel = document.querySelector(".urlNivel1");
-  const nivelUrl = urlNivel.value;
+    let auxUrlNivel = `.urlNivel${i+1}`;
+    const urlNivel = document.querySelector(auxUrlNivel);
+    const nivelUrl = urlNivel.value;
 
-  const descricaoNivel = document.querySelector(".descricaoNivel1");
-  const descricao = descricaoNivel.value;
+    let auxDescricaoNivel = `.descricaoNivel${i+1}`;
+    const descricaoNivel = document.querySelector(auxDescricaoNivel);
+    const descricao = descricaoNivel.value;
 
-  if (
-    nivelTitulo.length < 10 ||
-    isNaN(porcentagem) ||
-    porcentagem < 0 ||
-    porcentagem > 100 ||
-    !validUrl(nivelUrl) ||
-    descricao.length < 30
-  ) {
-    alert("Por favor, preencha os dados corretamente.");
-    return;
+    if (
+      nivelTitulo.length < 10 ||
+      isNaN(porcentagem) ||
+      porcentagem < 0 ||
+      porcentagem > 100 ||
+      !validUrl(nivelUrl) ||
+      descricao.length < 30
+    ) {
+      alert("Por favor, preencha os dados corretamente.");
+      return;
+    }
   }
   alert("Dados preenchidos corretamente!");
   paraQuizPronto();
