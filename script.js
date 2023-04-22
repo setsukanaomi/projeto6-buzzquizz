@@ -180,6 +180,10 @@ function validarEntradas() {
   paraPerguntas(qtdPerguntas);
 }
 
+function recarregarPagina(){
+  window.location.reload();
+}
+
 // - Código Naomi - Função que valida URL
 function validUrl(url) {
   const regex = /^(ftp|http|https):\/\/[^ "]+$/;
