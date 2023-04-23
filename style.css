@@ -333,6 +333,87 @@ html {
   pointer-events: none;
 }
 
+.resultado-quizz {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.topo-resultado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690px;
+  height: 140px;
+  background: #ec362d;
+}
+
+.topo-resultado a {
+  font-weight: 700;
+  font-size: 23px;
+  color: #FFFFFF;
+}
+
+.resultado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 690px;
+}
+
+.resultado img {
+  width: 350px;
+  height: 240px;
+}
+
+.resultado a {
+  width: 330px;
+  font-weight: 700;
+  font-size: 19px;
+  color: #484848;
+  overflow-wrap: break-word;
+}
+
+.menu-rodape {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.botao-reiniciar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  height: 52px;
+  background: #EC362D;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.botao-reiniciar a {
+  font-weight: 400;
+  font-size: 21px;
+  color: #FFF5F4;
+}
+
+.menu-rodape p {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 21px;
+  color: #818181;
+  cursor: pointer;
+}
+
 /* Naomi - Tela 4 */
 
 .procedimentos {
