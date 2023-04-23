@@ -458,8 +458,8 @@ function criarObjeto(qtdPerguntas) {
 
     for (let j = 0; j < respostas.length; j++) {
       var auxObjRespostas = {
-        text: respostas[j+1],
-        image: urlImgs[j+1],
+        text: respostas[j],
+        image: urlImgs[j],
         isCorrectAnswer: auxECorreta
       }
 
@@ -511,7 +511,7 @@ function validaNivel() {
       title: nivelTitulo,
       image: nivelUrl,
       text: descricao,
-      minValue: porcentagem
+      minValue: Number(porcentagem)
     }
 
     novoQuizz.levels.push(auxNiveis);
@@ -566,12 +566,19 @@ function paraQuizPronto() {
 function enviaQuizzServidor() {
   const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", novoQuizz);
   requisicaoPost.then(processarNovoquizz);
+  requisicaoPost.catch(deuErro)
 }
 
 function processarNovoquizz (res) {
+  console.log('resultado:')
   console.log(res);
   //const meuId = localStorage.setItem(res.id);
  // meusIds.push(meuId);
+}
+
+function deuErro(res) {
+    console.log('resultado:')
+  console.log(res);
 }
 
 function calculaResultadoQuizz() {
