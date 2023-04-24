@@ -22,33 +22,21 @@
         <p>Você não criou nenhum quizz ainda :(</p>
         <div class="botaoQuiz" data-test="create-btn" onclick="criarQuiz()">Criar Quizz</div>
       </div>
-      <div class="favoritos escondido">
-        <div class="seusQuizzes">
-          <p>Seus Quizzes</p>
-          <ion-icon name="add-circle" data-test="create-btn" onclick="criarQuiz()"></ion-icon>
+      
+        <div class="seusQuizzes escondido">
+          <div class="topo-seusQuizzes">
+            <p>Seus Quizzes</p>
+            <ion-icon class="add-circle-icon" name="add-circle" data-test="create-btn" onclick="criarQuiz()"></ion-icon>
+          </div>
           <div class="meusQuizzes"></div>
         </div>
-      </div>
+      
       <div class="todosQuizzes">
         <p>Todos os Quizzes</p>
         <div class="containerQuizzes"></div>
       </div>
     </div>
 
-    <!--<div id="tela-2" class="containers-telas escondido">
-      <div class="favoritos">
-        <div class="seusQuizzes">
-          <p>Seus Quizzes</p>
-          <ion-icon name="add-circle" data-test="create-btn" onclick="criarQuiz()"></ion-icon>
-          <div class="meusQuizzes"></div>
-        </div>
-      </div>
-      <div class="todosQuizzes">
-        <p>Todos os Quizzes</p>
-
-        <div class="containerQuizzes"></div>
-      </div>
-    </div>-->
 
     <div id="tela-3-comece" class="containers-telas escondido">
       <span>Comece pelo começo</span>
@@ -91,7 +79,7 @@
       </div>
     </div>
 
-    <div class="container-quizzes escondido">
+    <div id="tela-7-fim-quizz" class="container-quizzes escondido">
       <div class="quizzes"></div>
       <div class="resultado-quizz escondido"></div>
       <div class="menu-rodape escondido"></div>

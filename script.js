@@ -17,6 +17,12 @@ function obterQuizz() {
 }
 
 function processarQuizz(res) {
+  const meusIdsAux = localStorage.getItem("idsPost");
+
+  meusIds.push(JSON.parse(meusIdsAux));
+
+  console.log(meusIds);
+
   console.log(res);
 
   quizzes = res.data;
@@ -25,47 +31,61 @@ function processarQuizz(res) {
 }
 
 function procuraMeusQuizzes() {
-  if (meusIds.length != 0) {
-    const divCriarQuizz = document.querySelector("criarQuizz");
+  if (meusIds != null) {
+    const divCriarQuizz = document.querySelector(".criarQuizz");
     divCriarQuizz.classList.add("escondido")
 
-    const divFavoritos = document.querySelector("favoritos");
-    divFavoritos.classList.remove("escondido");
+    const divseusQuizzes = document.querySelector(".seusQuizzes");
+    divseusQuizzes.classList.remove("escondido");
 
-    for (let i = 0; i < meusIds.length; i++) {
-      var auxRequisicao = `https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${meusIds[i]}`
-      const requisicao = axios.get(auxRequisicao);
-      requisicao.then(processarMeusQuizzes);
-    }
-    renderizarMeusQuizzes();
+    recebeMeusQuizzes(0);
+
   } else {
     renderizarQuizzTela1ou2();
   }
+}
 
+function recebeMeusQuizzes(num) {
+  var auxRequisicao = `https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${meusIds[num]}`
+  const requisicao = axios.get(auxRequisicao);
+  requisicao.then(processarMeusQuizzes);
+  requisicao.catch(renderizarMeusQuizzes);
 }
 
 function processarMeusQuizzes(res) {
-  meusQuizzes.push(res);
+  console.log(res);
+  meusQuizzes.push(res.data);
+  recebeMeusQuizzes(meusQuizzes.length);
 }
 
 function renderizarMeusQuizzes() {
-  const divMeusQuizzes = document.querySelector("meusQuizzes");
+  const divMeusQuizzes = document.querySelector(".meusQuizzes");
   
   divMeusQuizzes.innerHTML = '';
 
   for (let i = 0; i < meusQuizzes.length; i++) {
     divMeusQuizzes.innerHTML += `
-      <div class="divQuiz" onclick="selecionarQuizz(this, ${i})">
-        <img src="${quizzes[i].image}">
+      <div class="divQuiz" onclick="selecionarMeuQuizz(this, ${i})">
+        <img src="${meusQuizzes[i].image}">
         <div class="degrade"></div>
-        <span>${quizzes[i].title}</span>
+        <span>${meusQuizzes[i].title}</span>
       </div>`
   }
 
   renderizarQuizzTela1ou2();
 }
 
+function selecionarMeuQuizz(op, i) {
+  const aux = document.getElementById("tela-1-e-2");
+  aux.classList.add("escondido");
+  
+  quizz = meusQuizzes[i];
+
+  renderizarQuizzTela3A7(i);
+}
+
 function renderizarQuizzTela1ou2() {
+
   const ulQuizz = document.querySelector(".containerQuizzes");
 
   ulQuizz.innerHTML = "";
@@ -84,6 +104,9 @@ function renderizarQuizzTela1ou2() {
         <span>${auxStr}</span>
       </div>`;
   }
+
+  const aux = document.getElementById("tela-1-e-2");
+  aux.classList.remove("escondido");
 }
 
 function selecionarQuizz(op, i) {
@@ -179,7 +202,7 @@ function selecionarOpcao(op, i, j) {
   trancaOutras(op, i);
 
   if (quizz.questions[0].answers.length > 2) {
-    scroll(0, (i + 1) * 900);
+    scroll(0, (i + 1) * 800);
   }
   else {
     scroll(0, (i + 1) * 500);
@@ -457,13 +480,14 @@ function criarObjeto(qtdPerguntas) {
     }
 
     for (let j = 0; j < respostas.length; j++) {
-      var auxObjRespostas = {
-        text: respostas[j],
-        image: urlImgs[j],
-        isCorrectAnswer: auxECorreta
+      if (respostas[j] != '') {
+        var auxObjRespostas = {
+          text: respostas[j],
+          image: urlImgs[j],
+          isCorrectAnswer: auxECorreta
+        }
+        auxObjPerguntas.answers.push(auxObjRespostas);
       }
-
-      auxObjPerguntas.answers.push(auxObjRespostas);
     }
 
     auxObjTitulo.questions.push(auxObjPerguntas);
@@ -536,9 +560,11 @@ function paraNiveis() {
 
 function voltarHome() {
   const tela6 = document.querySelector("#tela-6-quizpronto");
-  const tela1e2 = document.querySelector("#tela-1-e-2");
   tela6.classList.add("escondido");
-  tela1e2.classList.remove("escondido");
+
+  scroll(0,0);
+
+  obterQuizz();
 }
 
 // - Função que vai para tela de Quiz Pronto (Desktop-11)
@@ -570,14 +596,21 @@ function enviaQuizzServidor() {
 }
 
 function processarNovoquizz (res) {
-  console.log('resultado:')
+  console.log('sucesso:')
   console.log(res);
-  //const meuId = localStorage.setItem(res.id);
- // meusIds.push(meuId);
+
+  localStorage.setItem("idsPost", String(res.data.id));
+
+  var meuId = localStorage.getItem("idsPost");
+  var meuIdNumero = JSON.parse(meuId);
+
+  //console.log(meuIdNumero)
+
+  //meusIds.push(meuIdNumero);
 }
 
 function deuErro(res) {
-    console.log('resultado:')
+  console.log('deu erro:')
   console.log(res);
 }
 
@@ -619,7 +652,7 @@ function renderizaResultadoQuizz(prcntgmAcertos, i) {
   divRodape.classList.remove("escondido");
 
   if (quizz.questions[0].answers.length > 2) {
-    scroll(0, quizz.questions.length * 900);
+    scroll(0, quizz.questions.length * 800);
   } else {
     scroll(0, quizz.questions.length * 500);
   }
@@ -640,21 +673,14 @@ function reiniciarQuizz () {
 }
 
 function irParaHome() {
-  const divContainer = document.querySelector(".container-quizzes");
-  divContainer.classList.add("escondido");
 
-  const divResultado = document.querySelector('.resultado-quizz');
-  divResultado.classList.add("escondido");
+  const tela7 = document.querySelector("#tela-7-fim-quizz");
+  tela7.classList.add("escondido");
 
-  const divRodape = document.querySelector('.menu-rodape');
-  divRodape.classList.add("escondido");
-
-  const aux = document.getElementById("tela-1-e-2");
-  aux.classList.remove("escondido");
+  const tela1e2 = document.querySelector('#tela-1-e-2');
+  tela1e2.classList.remove("escondido");
   
   scroll(0,0);
-
-  obterQuizz();
 }
 
 //acessarQuizz

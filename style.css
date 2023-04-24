@@ -84,6 +84,7 @@ h2 {
 .todosQuizzes {
   width: 78%;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .todosQuizzes p {
@@ -142,7 +143,7 @@ h2 {
   display: flex;
   align-items: center;
   margin: 0 21px 7px 18px;
-
+  overflow-wrap: break-word;
   color: #ffffff;
   position: absolute;
   left: 0;
@@ -412,6 +413,59 @@ html {
   font-size: 21px;
   color: #818181;
   cursor: pointer;
+}
+
+.seusQuizzes {
+  width: 78%;
+  display: flex;
+  margin-top: 77px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.seusQuizzes span {
+  width: 301px;
+  height: 54px;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin: 0 21px 7px 18px;
+  overflow-wrap: break-word;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.topo-seusQuizzes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+
+.topo-seusQuizzes p {
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+}
+
+.add-circle-icon {
+  cursor: pointer;
+  color: #EC362D;
+  width: 30px;
+  height: 30px;
+}
+
+.meusQuizzes {
+  width: 100%;
+  margin-top: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2%;
 }
 
 /* Naomi - Tela 4 */
