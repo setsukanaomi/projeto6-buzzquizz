@@ -131,7 +131,7 @@ function renderizarQuizzTela3A7() {
   ulQuizz.innerHTML = "";
 
   ulQuizz.innerHTML += `
-    <div class="topo-quizz">
+    <div class="topo-quizz" data-test="banner">
         <img src="${quizz.image}">
         <a>${quizz.title}</a>
     </div>`;
@@ -154,8 +154,8 @@ function gerarString() {
   for (let i = 0; i < quizz.questions.length; i++) {
 
     str += `
-      <div class="quizz">
-          <div class="pergunta">
+      <div class="quizz" data-test="question">
+          <div class="pergunta" data-test="question-title">
               <a>${quizz.questions[i].title}</a>
           </div>
           <div class="alternativas"> `;
@@ -173,9 +173,9 @@ function gerarString() {
         var straux = auxEmbaralhar[j].text
 
       str += `        
-        <div class="opcao" id="${i}" onclick="selecionarOpcao(this, ${i}, ${j})">
+        <div class="opcao" id="${i}" onclick="selecionarOpcao(this, ${i}, ${j})" data-test="answer">
             <img src="${auxEmbaralhar[j].image}">
-            <a>${straux}</a>
+            <a data-test="answer-text">${straux}</a>
         </div>`
 
     }
@@ -635,18 +635,18 @@ function renderizaResultadoQuizz(prcntgmAcertos, i) {
 
   divResultado.innerHTML += `
     <div class="topo-resultado">
-      <a>${Math.round(prcntgmAcertos)}% de acerto: ${quizz.levels[i].title}</a>
+      <a data-test="level-title">${Math.round(prcntgmAcertos)}% de acerto: ${quizz.levels[i].title}</a>
     </div>
     <div class="resultado">
-      <img src="${quizz.levels[i].image}">
-      <a>${quizz.levels[i].text}</a>
+      <img src="${quizz.levels[i].image}" data-test="level-image">
+      <a data-test="level-text">${quizz.levels[i].text}</a>
     </div>`
 
   divRodape.innerHTML += `
-    <div class="botao-reiniciar" onclick="reiniciarQuizz()">
+    <div class="botao-reiniciar" data-test="restart" onclick="reiniciarQuizz()">
       <a>Reiniciar Quizz</a>
     </div>
-    <p onclick="irParaHome()">Voltar pra home</p>`
+    <p onclick="irParaHome()" data-test="go-home">Voltar pra home</p>`
 
   divResultado.classList.remove("escondido");
   divRodape.classList.remove("escondido");
@@ -683,4 +683,16 @@ function irParaHome() {
   scroll(0,0);
 }
 
-//acessarQuizz
+function acessarQuizz() {
+  const tela6 = document.querySelector("#tela-6-quizpronto");
+  tela6.classList.add("escondido");
+
+  var auxRequisicao = `https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${meusIds[length]}`
+  const requisicao = axios.get(auxRequisicao);
+  requisicao.then(renderizaQuizzAtual)
+}
+
+function renderizaQuizzAtual(res) {
+  quizz = res.data;
+  renderizarQuizzTela3A7();
+}
