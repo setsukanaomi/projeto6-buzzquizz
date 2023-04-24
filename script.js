@@ -33,20 +33,19 @@ function processarQuizz(res) {
 function procuraMeusQuizzes() {
   if (meusIds != null) {
     const divCriarQuizz = document.querySelector(".criarQuizz");
-    divCriarQuizz.classList.add("escondido")
+    divCriarQuizz.classList.add("escondido");
 
     const divseusQuizzes = document.querySelector(".seusQuizzes");
     divseusQuizzes.classList.remove("escondido");
 
     recebeMeusQuizzes(0);
-
   } else {
     renderizarQuizzTela1ou2();
   }
 }
 
 function recebeMeusQuizzes(num) {
-  var auxRequisicao = `https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${meusIds[num]}`
+  var auxRequisicao = `https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${meusIds[num]}`;
   const requisicao = axios.get(auxRequisicao);
   requisicao.then(processarMeusQuizzes);
   requisicao.catch(renderizarMeusQuizzes);
@@ -60,16 +59,16 @@ function processarMeusQuizzes(res) {
 
 function renderizarMeusQuizzes() {
   const divMeusQuizzes = document.querySelector(".meusQuizzes");
-  
-  divMeusQuizzes.innerHTML = '';
+
+  divMeusQuizzes.innerHTML = "";
 
   for (let i = 0; i < meusQuizzes.length; i++) {
     divMeusQuizzes.innerHTML += `
-      <div class="divQuiz" onclick="selecionarMeuQuizz(this, ${i})">
+      <div data-test="my-quiz" class="divQuiz" onclick="selecionarMeuQuizz(this, ${i})">
         <img src="${meusQuizzes[i].image}">
         <div class="degrade"></div>
         <span>${meusQuizzes[i].title}</span>
-      </div>`
+      </div>`;
   }
 
   renderizarQuizzTela1ou2();
@@ -78,14 +77,13 @@ function renderizarMeusQuizzes() {
 function selecionarMeuQuizz(op, i) {
   const aux = document.getElementById("tela-1-e-2");
   aux.classList.add("escondido");
-  
+
   quizz = meusQuizzes[i];
 
   renderizarQuizzTela3A7(i);
 }
 
 function renderizarQuizzTela1ou2() {
-
   const ulQuizz = document.querySelector(".containerQuizzes");
 
   ulQuizz.innerHTML = "";
@@ -98,7 +96,7 @@ function renderizarQuizzTela1ou2() {
     }
 
     ulQuizz.innerHTML += `
-      <div class="divQuiz" onclick="selecionarQuizz(this, ${i})">
+      <div data-test="others-quiz" class="divQuiz" onclick="selecionarQuizz(this, ${i})">
         <img src="${quizzes[i].image}">
         <div class="degrade"></div>
         <span>${auxStr}</span>
@@ -112,14 +110,14 @@ function renderizarQuizzTela1ou2() {
 function selecionarQuizz(op, i) {
   const aux = document.getElementById("tela-1-e-2");
   aux.classList.add("escondido");
-  
+
   quizz = quizzes[i];
 
   renderizarQuizzTela3A7(i);
 }
 
 function renderizarQuizzTela3A7() {
-  scroll(0,0);
+  scroll(0, 0);
 
   qtdRespondidas = 0;
 
@@ -136,23 +134,20 @@ function renderizarQuizzTela3A7() {
         <a>${quizz.title}</a>
     </div>`;
 
-        
-   let str = gerarString();
+  let str = gerarString();
 
-   ulQuizz.innerHTML += str;
+  ulQuizz.innerHTML += str;
 
-   const auxcor = document.getElementsByClassName("pergunta");
-   for (let i = 0; i < auxcor.length; i++) {
+  const auxcor = document.getElementsByClassName("pergunta");
+  for (let i = 0; i < auxcor.length; i++) {
     auxcor[i].style.backgroundColor = quizz.questions[i].color;
-   }
+  }
 }
-
 
 function gerarString() {
   let str = "";
 
   for (let i = 0; i < quizz.questions.length; i++) {
-
     str += `
       <div class="quizz">
           <div class="pergunta">
@@ -164,20 +159,15 @@ function gerarString() {
 
     auxEmbaralhar.sort(comparador);
 
-
     for (let j = 0; j < auxEmbaralhar.length; j++) {
-
-      if (auxEmbaralhar[j].text.length > 20)
-        var straux = auxEmbaralhar[j].text.substring(0, 20);
-      else
-        var straux = auxEmbaralhar[j].text
+      if (auxEmbaralhar[j].text.length > 20) var straux = auxEmbaralhar[j].text.substring(0, 20);
+      else var straux = auxEmbaralhar[j].text;
 
       str += `        
         <div class="opcao" id="${i}" onclick="selecionarOpcao(this, ${i}, ${j})">
             <img src="${auxEmbaralhar[j].image}">
             <a>${straux}</a>
-        </div>`
-
+        </div>`;
     }
 
     str += `
@@ -187,7 +177,6 @@ function gerarString() {
 
   return str;
 }
-
 
 function selecionarOpcao(op, i, j) {
   qtdRespondidas++;
@@ -203,13 +192,11 @@ function selecionarOpcao(op, i, j) {
 
   if (quizz.questions[0].answers.length > 2) {
     scroll(0, (i + 1) * 800);
-  }
-  else {
+  } else {
     scroll(0, (i + 1) * 500);
   }
 
-  if (qtdRespondidas == quizz.questions.length)
-    calculaResultadoQuizz();
+  if (qtdRespondidas == quizz.questions.length) calculaResultadoQuizz();
 }
 
 function respostaCorreta(op) {
@@ -234,7 +221,6 @@ function trancaOutras(op, i) {
     }
   }
 }
-
 
 function comparador() {
   return Math.random() - 0.5;
@@ -268,7 +254,7 @@ function validarEntradas() {
   paraPerguntas(qtdPerguntas);
 }
 
-function recarregarPagina(){
+function recarregarPagina() {
   window.location.reload();
 }
 
@@ -306,7 +292,6 @@ function criarQuiz() {
 
   tela1e2.classList.add("escondido");
   tela3.classList.remove("escondido");
-
 }
 
 // Função que cria as perguntas baseado na qtdPerguntas
@@ -392,16 +377,16 @@ function criaNiveis() {
 
 function validaPerguntas(qtdPerguntas) {
   for (let i = 0; i < qtdPerguntas; i++) {
-    let auxTexto = `.textoPergunta${i+1}`;
+    let auxTexto = `.textoPergunta${i + 1}`;
     const textoPergunta = document.querySelector(auxTexto);
     const pergunta = textoPergunta.value;
 
-    let auxCor = `.cor${i+1}`;
+    let auxCor = `.cor${i + 1}`;
     const corPergunta = document.querySelector(auxCor);
     const cor = corPergunta.value;
     const decimal = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 
-    let auxRespostas = `.respostas${i+1}`;
+    let auxRespostas = `.respostas${i + 1}`;
     const respostasPerguntas = document.querySelectorAll(auxRespostas);
     const respostas = [];
     respostasPerguntas.forEach((resposta) => {
@@ -410,7 +395,7 @@ function validaPerguntas(qtdPerguntas) {
       }
     });
 
-    let auxUrlRespostas = `.urlPerguntasImg${i+1}`;
+    let auxUrlRespostas = `.urlPerguntasImg${i + 1}`;
     const urlsRespostas = document.querySelectorAll(auxUrlRespostas);
     const urlImgs = [];
     urlsRespostas.forEach((url) => {
@@ -424,12 +409,11 @@ function validaPerguntas(qtdPerguntas) {
       return;
     }
   }
-  
+
   alert("Dados preenchidos corretamente!");
   criarObjeto(qtdPerguntas);
   paraNiveis();
 }
-
 
 function criarObjeto(qtdPerguntas) {
   const tituloQuiz = document.querySelector(".titulo");
@@ -442,50 +426,49 @@ function criarObjeto(qtdPerguntas) {
     title: titulo,
     image: urlImagem,
     questions: [],
-    levels: []
-  }
+    levels: [],
+  };
 
   for (let i = 0; i < qtdPerguntas; i++) {
-    let auxTexto = `.textoPergunta${i+1}`;
+    let auxTexto = `.textoPergunta${i + 1}`;
     const textoPergunta = document.querySelector(auxTexto);
     const pergunta = textoPergunta.value;
 
-    let auxCor = `.cor${i+1}`;
+    let auxCor = `.cor${i + 1}`;
     const corPergunta = document.querySelector(auxCor);
     const cor = corPergunta.value;
 
-    let auxRespostas = `.respostas${i+1}`;
+    let auxRespostas = `.respostas${i + 1}`;
     const respostasPerguntas = document.querySelectorAll(auxRespostas);
     const respostas = [];
     respostasPerguntas.forEach((resposta) => {
-        respostas.push(resposta.value);
+      respostas.push(resposta.value);
     });
 
-    let auxUrlRespostas = `.urlPerguntasImg${i+1}`;
+    let auxUrlRespostas = `.urlPerguntasImg${i + 1}`;
     const urlsRespostas = document.querySelectorAll(auxUrlRespostas);
-    const urlImgs =  [];
+    const urlImgs = [];
     urlsRespostas.forEach((url) => {
-        urlImgs.push(url.value);
+      urlImgs.push(url.value);
     });
-    
+
     var auxECorreta = true;
 
-    if (i != 0)
-       auxECorreta = false;
+    if (i != 0) auxECorreta = false;
 
     var auxObjPerguntas = {
       title: pergunta,
       color: cor,
-      answers: []
-    }
+      answers: [],
+    };
 
     for (let j = 0; j < respostas.length; j++) {
-      if (respostas[j] != '') {
+      if (respostas[j] != "") {
         var auxObjRespostas = {
           text: respostas[j],
           image: urlImgs[j],
-          isCorrectAnswer: auxECorreta
-        }
+          isCorrectAnswer: auxECorreta,
+        };
         auxObjPerguntas.answers.push(auxObjRespostas);
       }
     }
@@ -500,22 +483,20 @@ function criarObjeto(qtdPerguntas) {
 // - Código Naomi - Validador de Níveis (Desktop-10)
 
 function validaNivel() {
-
-  for (let i = 0; i < qtdNiveis; i++){
-
-    let auxTituloNivel = `.tituloNivel${i+1}`;
+  for (let i = 0; i < qtdNiveis; i++) {
+    let auxTituloNivel = `.tituloNivel${i + 1}`;
     const tituloNivel = document.querySelector(auxTituloNivel);
     const nivelTitulo = tituloNivel.value;
 
-    let auxPorcentMinima = `.porcentagemAcerto${i+1}`;
+    let auxPorcentMinima = `.porcentagemAcerto${i + 1}`;
     const porcentMinima = document.querySelector(auxPorcentMinima);
     const porcentagem = porcentMinima.value;
 
-    let auxUrlNivel = `.urlNivel${i+1}`;
+    let auxUrlNivel = `.urlNivel${i + 1}`;
     const urlNivel = document.querySelector(auxUrlNivel);
     const nivelUrl = urlNivel.value;
 
-    let auxDescricaoNivel = `.descricaoNivel${i+1}`;
+    let auxDescricaoNivel = `.descricaoNivel${i + 1}`;
     const descricaoNivel = document.querySelector(auxDescricaoNivel);
     const descricao = descricaoNivel.value;
 
@@ -530,13 +511,13 @@ function validaNivel() {
       alert("Por favor, preencha os dados corretamente.");
       return;
     }
-    
+
     var auxNiveis = {
       title: nivelTitulo,
       image: nivelUrl,
       text: descricao,
-      minValue: Number(porcentagem)
-    }
+      minValue: Number(porcentagem),
+    };
 
     novoQuizz.levels.push(auxNiveis);
   }
@@ -562,14 +543,13 @@ function voltarHome() {
   const tela6 = document.querySelector("#tela-6-quizpronto");
   tela6.classList.add("escondido");
 
-  scroll(0,0);
+  scroll(0, 0);
 
   obterQuizz();
 }
 
 // - Função que vai para tela de Quiz Pronto (Desktop-11)
 function paraQuizPronto() {
-
   const tela5 = document.querySelector("#tela-5-niveis");
   const tela6 = document.querySelector("#tela-6-quizpronto");
 
@@ -578,12 +558,12 @@ function paraQuizPronto() {
   tela6Corpo.innerHTML += `
           <img src="${novoQuizz.image}" alt="" />
           <div class="degrade-quizz-final"></div>
-          <span>${novoQuizz.title}</span>`
+          <span>${novoQuizz.title}</span>`;
 
   tela5.classList.add("escondido");
   tela6.classList.remove("escondido");
 
-  scroll(0,0);
+  scroll(0, 0);
 
   enviaQuizzServidor();
 }
@@ -592,11 +572,11 @@ function paraQuizPronto() {
 function enviaQuizzServidor() {
   const requisicaoPost = axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", novoQuizz);
   requisicaoPost.then(processarNovoquizz);
-  requisicaoPost.catch(deuErro)
+  requisicaoPost.catch(deuErro);
 }
 
-function processarNovoquizz (res) {
-  console.log('sucesso:')
+function processarNovoquizz(res) {
+  console.log("sucesso:");
   console.log(res);
 
   localStorage.setItem("idsPost", String(res.data.id));
@@ -610,28 +590,28 @@ function processarNovoquizz (res) {
 }
 
 function deuErro(res) {
-  console.log('deu erro:')
+  console.log("deu erro:");
   console.log(res);
 }
 
 function calculaResultadoQuizz() {
   var prcntgmAcertos = (qtdCertas * 100) / quizz.questions.length;
 
-  for (let i = quizz.levels.length-1; i > 0; i--) {
+  for (let i = quizz.levels.length - 1; i > 0; i--) {
     if (quizz.levels[i].minValue < prcntgmAcertos) {
       renderizaResultadoQuizz(prcntgmAcertos, i);
       return;
     }
   }
-  renderizaResultadoQuizz(prcntgmAcertos, 0)
+  renderizaResultadoQuizz(prcntgmAcertos, 0);
 }
 
 function renderizaResultadoQuizz(prcntgmAcertos, i) {
-  const divResultado = document.querySelector('.resultado-quizz');
-  const divRodape = document.querySelector('.menu-rodape');
+  const divResultado = document.querySelector(".resultado-quizz");
+  const divRodape = document.querySelector(".menu-rodape");
 
-  divResultado.innerHTML = '';
-  divRodape.innerHTML = '';
+  divResultado.innerHTML = "";
+  divRodape.innerHTML = "";
 
   divResultado.innerHTML += `
     <div class="topo-resultado">
@@ -640,13 +620,13 @@ function renderizaResultadoQuizz(prcntgmAcertos, i) {
     <div class="resultado">
       <img src="${quizz.levels[i].image}">
       <a>${quizz.levels[i].text}</a>
-    </div>`
+    </div>`;
 
   divRodape.innerHTML += `
     <div class="botao-reiniciar" onclick="reiniciarQuizz()">
       <a>Reiniciar Quizz</a>
     </div>
-    <p onclick="irParaHome()">Voltar pra home</p>`
+    <p onclick="irParaHome()">Voltar pra home</p>`;
 
   divResultado.classList.remove("escondido");
   divRodape.classList.remove("escondido");
@@ -656,31 +636,29 @@ function renderizaResultadoQuizz(prcntgmAcertos, i) {
   } else {
     scroll(0, quizz.questions.length * 500);
   }
-
 }
 
-function reiniciarQuizz () {
+function reiniciarQuizz() {
   const divContainer = document.querySelector(".container-quizzes");
   divContainer.classList.add("escondido");
 
-  const divResultado = document.querySelector('.resultado-quizz');
+  const divResultado = document.querySelector(".resultado-quizz");
   divResultado.classList.add("escondido");
 
-  const divRodape = document.querySelector('.menu-rodape');
+  const divRodape = document.querySelector(".menu-rodape");
   divRodape.classList.add("escondido");
 
   renderizarQuizzTela3A7();
 }
 
 function irParaHome() {
-
   const tela7 = document.querySelector("#tela-7-fim-quizz");
   tela7.classList.add("escondido");
 
-  const tela1e2 = document.querySelector('#tela-1-e-2');
+  const tela1e2 = document.querySelector("#tela-1-e-2");
   tela1e2.classList.remove("escondido");
-  
-  scroll(0,0);
+
+  scroll(0, 0);
 }
 
 //acessarQuizz
